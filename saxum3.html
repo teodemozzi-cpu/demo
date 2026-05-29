@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAXUM | Trento DOC di Montagna</title>
+    
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark: #0c0c0c;
+            --accent: #1a1a1a;
+            --white: #f4f4f4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Arial', sans-serif; 
+            background-color: var(--dark); 
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Navigazione */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(12, 12, 12, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .logo { 
+            font-family: 'Times New Roman', serif; 
+            font-size: 1.8rem; 
+            color: var(--gold); 
+            font-weight: 700; 
+            cursor: pointer; 
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--gold); }
+
+        /* Gestione Pagine */
+        .page {
+            display: none; /* Tutte le pagine nascoste all'inizio */
+            min-height: 100vh;
+            padding-top: 100px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .page.active { 
+            display: block; /* Solo la pagina attiva viene mostrata */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Contenuti */
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        
+        h1, h2, h3 { font-family: 'Times New Roman', serif; letter-spacing: 2px; text-transform: uppercase; }
+        
+        .section-title { font-size: 2.5rem; color: var(--gold); text-align: center; margin-bottom: 40px; }
+
+        /* Home Hero */
+        #home-page {
+            height: 100vh;
+            padding-top: 0;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('saxum6.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Layout Prodotti */
+        .product-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 80px;
+            align-items: center;
+            background: var(--accent);
+            padding: 30px;
+        }
+
+        .product-img img { max-width: 100%; height: auto; max-height: 500px; }
+
+        .price { font-size: 1.8rem; color: var(--gold); margin: 15px 0; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-gold { background: var(--gold); color: #000; }
+        .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); margin-right: 10px; }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #666; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo" onclick="showPage('home-page')">SAXUM</div>
+        <nav>
+            <a onclick="showPage('home-page')">Home</a>
+            <a onclick="showPage('about-page')">Chi Siamo</a>
+            <a onclick="showPage('shop-page')">Spumanti</a>
+            <a onclick="showPage('contact-page')">Visite</a>
+        </nav>
+    </header>
+
+    <main id="home-page" class="page active">
+        <h1 style="font-size: 4rem; color: var(--gold);">SAXUM</h1>
+        <p style="font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 20px;">TRENTO DOC DI MONTAGNA IN VAL DI CEMBRA [cite: 1, 2]</p>
+        <p style="max-width: 700px; font-style: italic;">"Saxum nasce dalla pietra. Dal silenzio antico delle montagne trentine." [cite: 4, 5]</p>
+    </main>
+
+    <main id="about-page" class="page">
+        <div class="container">
+            <h2 class="section-title">La Nostra Storia [cite: 15]</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                <div>
+                    <p>Fondata nel 1990 tra le pendenze estreme della Valle di Cembra, Saxum è il risultato di generazioni di agricoltori legate alla terra da sacrificio e rispetto[cite: 11, 16, 17].</p>
+                    <p>Il nome richiama i chilometri di muretti a secco (pietra) che sostengono i vigneti eroici[cite: 13, 18]. Coltiviamo esclusivamente Trentodoc su suoli porfirici, sfruttando le forti escursioni termiche per ottenere freschezza e mineralità[cite: 19, 20, 30].</p>
+                </div>
+                <img src="https://i.imgur.com/cMDTrv6.jpeg" alt="Storia" style="width: 100%;">
+            </div>
+        </div>
+    </main>
+
+    <main id="shop-page" class="page">
+        <div class="container">
+            <h2 class="section-title">I Nostri Prodotti [cite: 48]</h2>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://i.imgur.com/q8aJilt.jpeg" alt="Altera"></div>
+                <div>
+                    <h2>ALTÈRA [cite: 50, 55]</h2>
+                    <p>Brut - 100% Chardonnay. Affinamento 36 mesi sui lieviti[cite: 56, 57]. Note di mela verde, agrumi e crosta di pane. Fresco e verticale[cite: 53, 54, 69].</p>
+                    <div class="price">€ 30.00</div>
+                    <a href="scheda-altera.pdf" class="btn btn-outline">Scheda Tecnica</a>
+                    <button class="btn btn-gold">Acquista</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div>
+                    <h2>VERTIS [cite: 81, 86]</h2>
+                    <p>Blanc de Noir - 100% Pinot Nero. 48 mesi sui lieviti[cite: 87, 88]. Strutturato e vibrante, con note di piccoli frutti rossi e pietra focaia[cite: 98, 99, 100].</p>
+                    <div class="price">€ 38.00</div>
+                    <a href="scheda-vertis.pdf" class="btn btn-outline">Scheda Tecnica</a>
+                    <button class="btn btn-gold">Acquista</button>
+                </div>
+                <div class="product-img"><img src="https://i.imgur.com/a759k8Q.jpeg" alt="Vertis"></div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="https://i.imgur.com/X6R4g9T.jpeg" alt="Rocca Alta"></div>
+                <div>
+                    <h2>ROCCA ALTA [cite: 111, 117]</h2>
+                    <p>Riserva - 80% Chardonnay, 20% Pinot Nero[cite: 118]. Complessità aromatica di frutta secca, miele e pasticceria fine. Un vino da meditazione[cite: 115, 116, 130].</p>
+                    <div class="price">€ 50.00</div>
+                    <a href="scheda-rocca-alta.pdf" class="btn btn-outline">Scheda Tecnica</a>
+                    <button class="btn btn-gold">Acquista</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="contact-page" class="page">
+        <div class="container">
+            <h2 class="section-title">Visite in Cantina [cite: 144]</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Vivete un'esperienza autentica tra i vigneti terrazzati della Val di Cembra[cite: 146, 147].</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div style="background: var(--accent); padding: 30px;">
+                    <h3>Degustazioni [cite: 148]</h3>
+                    <ul style="list-style: none; margin-top: 20px;">
+                        <li style="margin-bottom: 15px;"><strong>Classica:</strong> 3 spumanti (1.30h) - € 25[cite: 149].</li>
+                        <li><strong>Premium:</strong> Degustazione in vigneto con prodotti tipici - € 33[cite: 150, 151].</li>
+                    </ul>
+                </div>
+                <div style="background: var(--gold); color: #000; padding: 30px;">
+                    <h3>Contatti</h3>
+                    <p>Telefono: <strong>4634748385</strong> [cite: 152]</p>
+                    <p>Email: <strong>info@saxumtrentodoc.it</strong></p>
+                    <p>Prenotazione obbligatoria[cite: 145].</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SAXUM - Trento DOC. Progetto realizzato per fini illustrativi.</p>
+    </footer>
+
+    <script>
+        // Funzione per cambiare pagina senza ricaricare il browser
+        function showPage(pageId) {
+            // Nascondi tutte le sezioni
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            // Mostra quella selezionata
+            const activePage = document.getElementById(pageId);
+            if(activePage) {
+                activePage.classList.add('active');
+                window.scrollTo(0, 0); // Torna in alto
+            }
+        }
+    </script>
+</body>
+</html>

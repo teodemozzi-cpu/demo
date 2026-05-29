@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAXUM | Trento DOC di Montagna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+            --gold: #c5a059;
+            --dark: #0c0c0c;
+            --accent: #1a1a1a;
+            --white: #f4f4f4;
+            --transition: all 0.5s ease-in-out;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            background-color: var(--dark); 
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Times New Roman', serif; text-transform: uppercase; letter-spacing: 3px; }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(12, 12, 12, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+        .logo { font-family: 'Cinzel'; font-size: 1.8rem; color: var(--gold); font-weight: 700; cursor: pointer; }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 35px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        nav a:hover { color: var(--gold); }
+
+        /* Page Management */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+            animation: fadeIn 0.8s ease;
+        }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Home Page (Hero) */
+        #home {
+            height: 100vh;
+            padding-top: 0;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), #333; /* Rimossa immagine mancante */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-title { font-size: 5.5rem; color: var(--gold); margin-bottom: 10px; letter-spacing: 15px; }
+        .hero-subtitle { font-size: 1.4rem; letter-spacing: 5px; margin-bottom: 30px; }
+
+        /* Sections General */
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        .section-title { font-size: 2.8rem; margin-bottom: 50px; color: var(--gold); text-align: center; }
+        p { line-height: 1.8; margin-bottom: 20px; font-weight: 300; font-size: 1.05rem; }
+
+        /* Chi Siamo Grid */
+        .grid-story { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 80px; }
+        .grid-story img { width: 100%; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .highlight-card { background: var(--accent); padding: 40px; border-left: 4px solid var(--gold); margin-top: 40px; }
+
+        /* Prodotti / Shop */
+        .product-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 100px;
+            align-items: center;
+            background: rgba(26, 26, 26, 0.4);
+            padding: 40px;
+            border-radius: 4px;
+        }
+        .product-img { text-align: center; }
+        .product-img img { max-height: 550px; transition: transform 0.5s; }
+        .product-img img:hover { transform: scale(1.05); }
+        .price { font-size: 2rem; color: var(--gold); margin: 25px 0; font-weight: 600; }
+        
+        /* Buttons */
+        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-gold { background: var(--gold); color: black; }
+        .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+        .btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
+
+        /* Visite & Contatti */
+        .visite-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; }
+        .experience-card { background: var(--accent); padding: 35px; margin-bottom: 25px; border: 1px solid #333; transition: 0.3s; }
+        .experience-card:hover { border-color: var(--gold); }
+        .contact-box { background: var(--gold); color: black; padding: 40px; border-radius: 4px; }
+        .contact-box h3 { color: black; margin-bottom: 20px; }
+
+        footer { text-align: center; padding: 50px; background: #050505; color: #555; font-size: 0.8rem; border-top: 1px solid #111; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo" onclick="showPage('home')">SAXUM</div>
+        <nav>
+            <a onclick="showPage('home')">Home</a>
+            <a onclick="showPage('chi-siamo')">Chi Siamo</a>
+            <a onclick="showPage('prodotti')">I Nostri Spumanti</a>
+            <a onclick="showPage('visite')">Visite e Contatti</a>
+        </nav>
+    </header>
+
+    <main id="home" class="page active">
+        <h1 class="hero-title">SAXUM</h1>
+        <p class="hero-subtitle">Trento DOC di Montagna</p>
+        <div class="btn-group">
+            <button class="btn btn-gold" onclick="showPage('prodotti')">Scopri le Collezioni</button>
+            <button class="btn btn-outline" onclick="showPage('visite')">Prenota Visita</button>
+        </div>
+    </main>
+
+    <main id="chi-siamo" class="page">
+        <div class="container">
+            <h2 class="section-title">L'Anima di Saxum</h2>
+            
+            <div class="grid-story">
+                <div>
+                    <h3>La Nostra Storia</h3>
+                    <p>La nostra è una famiglia di agricoltori da generazioni[cite: 11]. Nel 1990 abbiamo deciso di dare forma a ciò che da sempre custodivamo nel cuore: fondare una cantina a conduzione familiare capace di trasformare la tradizione in un'eccellenza identitaria[cite: 7, 12].</p>
+                    <p>Il nome "Saxum", dal latino pietra, è un omaggio ai chilometri di muretti a secco che sostengono i vigneti e custodiscono la memoria agricola della valle[cite: 18]. Qui la viticoltura è fatica quotidiana, un equilibrio perfetto tra verticalità e precisione[cite: 18].</p>
+                </div>
+                <div style="background: #333; height: 300px; display: flex; align-items: center; justify-content: center; color: #c5a059;">[Immagine Storia della Cantina]</div>
+            </div>
+
+            <div class="grid-story">
+                <div style="background: #333; height: 300px; display: flex; align-items: center; justify-content: center; color: #c5a059;">[Immagine Territorio Val di Cembra]</div>
+                <div>
+                    <h3>Un Territorio Eroico</h3>
+                    <p>La Val di Cembra è un anfiteatro naturale dove la viticoltura è definita "eroica"[cite: 26, 27]. I pendii ripidi e le importanti escursioni termiche regalano alle uve una freschezza e una finezza aromatica uniche[cite: 27, 28].</p>
+                    <p>Ogni bottiglia è la voce verticale della montagna, nata su suoli porfirici che conferiscono ai nostri Trento DOC precisione e longevità straordinarie[cite: 23, 30].</p>
+                </div>
+            </div>
+
+            <div class="highlight-card">
+                <h3>Filosofia e Viticoltura Sostenibile</h3>
+                <p>Crediamo in una viticoltura rispettosa e consapevole[cite: 32]. Utilizziamo la tecnica del sovescio e fertilizzanti organici a basso impatto per preservare la struttura del suolo[cite: 43, 44]. Riduciamo al minimo l'uso di macchinari per evitare il compattamento del terreno, favorendo la naturale attività biologica della vite[cite: 45].</p>
+            </div>
+        </div>
+    </main>
+
+    <main id="prodotti" class="page">
+        <div class="container">
+            <h2 class="section-title">Le Collezioni Trento DOC</h2>
+
+            <div class="product-row">
+                <div class="product-img"><div style="background: #333; height: 400px; display: flex; align-items: center; justify-content: center; color: #c5a059;">[Immagine Altera Brut]</div></div>
+                <div class="product-info">
+                    <h2>ALTÈRA</h2>
+                    <p><em>Brut - 100% Chardonnay (36 mesi sui lieviti) [cite: 56, 57]</em></p>
+                    <p>Simbolo di eleganza e purezza, l'Altèra si distingue per un perlage sottile e armonioso[cite: 51, 52]. Al naso esprime note nitide di mela verde, agrumi e delicati sentori di crosta di pane[cite: 53]. Un vino fresco e verticale, con una chiusura sapida che richiama la roccia porfirica[cite: 54].</p>
+                    <div class="price">€ 32.00</div>
+                    <div class="btn-group">
+                        <a href="scheda_altera.pdf" class="btn btn-outline">Scheda Tecnica</a>
+                        <button class="btn btn-gold">Acquista Ora</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-row">
+                <div class="product-info">
+                    <h2>VERTIS</h2>
+                    <p><em>Blanc de Noir - 100% Pinot Nero (48 mesi sui lieviti) [cite: 87, 88]</em></p>
+                    <p>Ottenuto da uve a bacca nera coltivate oltre i 600 metri, il Vertis esprime il carattere incisivo della montagna[cite: 83, 90]. Strutturato e vibrante, offre profumi di piccoli frutti rossi e pietra focaia[cite: 99, 100]. Il sorso è pieno e avvolgente, con un finale lungo e teso[cite: 85, 101].</p>
+                    <div class="price">€ 38.00</div>
+                    <div class="btn-group">
+                        <a href="scheda_vertis.pdf" class="btn btn-outline">Scheda Tecnica</a>
+                        <button class="btn btn-gold">Acquista Ora</button>
+                    </div>
+                </div>
+                <div class="product-img"><div style="background: #333; height: 400px; display: flex; align-items: center; justify-content: center; color: #c5a059;">[Immagine Vertis Blanc de Noir]</div></div>
+            </div>
+
+            <div class="product-row">
+                <div class="product-img"><div style="background: #333; height: 400px; display: flex; align-items: center; justify-content: center; color: #c5a059;">[Immagine Rocca Alta Riserva]</div></div>
+                <div class="product-info">
+                    <h2>ROCCA ALTA</h2>
+                    <p><em>Riserva - Chardonnay & Pinot Nero [cite: 118]</em></p>
+                    <p>La massima espressione della nostra filosofia[cite: 113]. Un equilibrio perfetto tra freschezza alpina e maturità evolutiva[cite: 114]. Complessità aromatica con note di frutta secca, miele d'acacia e pasticceria fine[cite: 115]. Un vino da meditazione, profondo e persistente[cite: 116].</p>
+                    <div class="price">€ 55.00</div>
+                    <div class="btn-group">
+                        <a href="scheda_rocca_alta.pdf" class="btn btn-outline">Scheda Tecnica</a>
+                        <button class="btn btn-gold">Acquista Ora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="visite" class="page">
+        <div class="container">
+            <h2 class="section-title">Esperienze in Cantina</h2>
+            <div class="visite-grid">
+                <div>
+                    <p>Accogliamo i nostri ospiti su prenotazione per condividere un viaggio tra i vigneti terrazzati e il cuore della nostra cantina[cite: 145, 146].</p>
+                    
+                    <div class="experience-card">
+                        <h3>Degustazione Classica</h3>
+                        <p>Visita dei vigneti e della cantina con degustazione guidata dei nostri tre spumanti Trento DOC[cite: 149].</p>
+                        <p><strong>Durata:</strong> 1.30 ore | <strong>Prezzo:</strong> 25 euro/persona [cite: 149]</p>
+                    </div>
+
+                    <div class="experience-card">
+                        <h3>Degustazione Premium</h3>
+                        <p>Un'esperienza immersiva con visita ai vigneti e degustazione tra i filari, abbinata a una selezione di prodotti tipici del territorio[cite: 150].</p>
+                        <p><strong>Durata:</strong> 1.30 ore | <strong>Prezzo:</strong> 33 euro/persona [cite: 151]</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="contact-box">
+                        <h3>Prenota la tua Visita</h3>
+                        <p>Per riservare un'esperienza o richiedere informazioni, contattaci direttamente:</p>
+                        <p><strong>Telefono:</strong> +39 463 474 8385 [cite: 152]</p>
+                        <p><strong>Email:</strong> hospitality@saxumtrentodoc.it</p>
+                        <p><strong>Orari:</strong> Su prenotazione</p>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <div style="background: #333; height: 200px; display: flex; align-items: center; justify-content: center; color: #c5a059; width: 100%; border-radius: 4px;">[Immagine Vista Val di Cembra]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SAXUM - Azienda Agricola in Val di Cembra. P.IVA 0123456789</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Nasconde tutte le pagine
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Mostra la pagina selezionata
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

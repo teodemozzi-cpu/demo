@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAXUM | Trento DOC Eccellenza della Val di Cembra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --oro: #c9a563;
+            --oro-dark: #a88a4d;
+            --oro-light: #e8d5b7;
+            --bg-main: #faf8f5;
+            --bg-secondary: #f3ede5;
+            --bg-tertiary: #eae3db;
+            --accent-light: #e0d5c8;
+            --bianco: #ffffff;
+            --text-dark: #3d3d3d;
+            --text-light: #6b6b6b;
+            --border-color: rgba(201, 165, 99, 0.15);
+        }
+
+        /* Reset e Base */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-main); 
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .section-title {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.8rem; }
+        h3 { font-size: 1.8rem; }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigazione Fissa */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: padding 0.3s ease, background 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        header.scrolled {
+            padding: 0.8rem 6%;
+            background: rgba(250, 248, 245, 0.98);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo { 
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem; 
+            font-weight: 700; 
+            color: var(--oro);
+            cursor: pointer;
+            letter-spacing: 4px;
+            text-shadow: 0 2px 8px rgba(212, 165, 116, 0.3);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a { 
+            color: var(--text-dark);
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--oro), transparent);
+            transition: width 0.4s ease;
+        }
+
+        nav a:hover {
+            color: var(--oro);
+        }
+
+        nav a:hover::after {
+            width: calc(100% - 2rem);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--oro);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(180deg, rgba(250,248,245,0.35) 0%, rgba(255,255,255,0.10) 60%), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(250,248,245,0.25) 100%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 { 
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            color: var(--oro);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            letter-spacing: 6px;
+        }
+
+        .hero p { 
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--oro) 0%, var(--oro-dark) 100%);
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(201, 165, 99, 0.25);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.4s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 165, 99, 0.35);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sezioni Generali */
+        section { 
+            padding: 6rem 10%;
+            position: relative;
+        }
+
+        section p {
+            color: var(--text-dark);
+        }
+
+        section:nth-child(even) {
+            background: linear-gradient(180deg, var(--bg-tertiary) 0%, transparent 100%);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--oro), transparent);
+        }
+
+        /* Chi Siamo - Contenuti Dettagliati */
+        .content-box { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 4rem; 
+            align-items: center; 
+            margin-bottom: 5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .content-box img { 
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.6s ease, filter 0.6s ease;
+            filter: grayscale(10%);
+            border: 1px solid var(--accent-light);
+        }
+
+        .content-box img:hover {
+            transform: scale(1.03);
+            filter: grayscale(0%);
+        }
+
+        .text-content h3 { 
+            margin-bottom: 1.5rem; 
+            color: var(--oro);
+        }
+
+        .text-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+        }
+
+        /* Filosofia Grid */
+        .filosofia-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2.5rem; 
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, var(--bianco) 0%, var(--bg-secondary) 100%);
+            padding: 3rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--oro);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--accent-light);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            right: -100%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            border-radius: 50%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-left-color: var(--oro-light);
+            background: linear-gradient(135deg, var(--bianco) 0%, var(--accent-light) 100%);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card:hover::before {
+            top: -50%;
+            right: -50%;
+        }
+
+        .card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--oro);
+        }
+
+        .card p {
+            color: var(--text-dark);
+        }
+
+        /* Prodotti - Schede Verticali */
+        .product-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 6rem;
+        }
+
+        .product-item { 
+            display: grid; 
+            grid-template-columns: 1fr 1.2fr; 
+            gap: 4rem; 
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out;
+            background: var(--bianco);
+            padding: 2rem;
+            border-radius: 18px;
+            border: 1px solid var(--accent-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .product-item.reverse { 
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        .product-item.reverse .product-img {
+            order: 2;
+        }
+
+        .product-item.reverse .text-content {
+            order: 1;
+        }
+
+        .product-img { 
+            text-align: center;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.45s ease, box-shadow 0.45s ease;
+        }
+
+        .product-img img { 
+            max-height: 560px;
+            width: auto;
+            max-width: 92%;
+            transition: transform 0.35s ease, filter 0.35s ease;
+            filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.06));
+            background: transparent;
+            border-radius: 8px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            image-rendering: auto;
+        }
+
+        /* Subtle backdrop behind PNGs to hide any checkerboard transparency */
+        .product-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(250,248,245,0.6) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .product-img:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.06);
+        }
+
+        /* Colored gradient backdrops for each wine */
+        .product-img.alt-bg { background: linear-gradient(135deg, #fff9f4 0%, #f3e6d6 100%); }
+        .product-img.vertis-bg { background: linear-gradient(135deg, #fff6f8 0%, #f6e9ef 100%); }
+        .product-img.rocca-bg { background: linear-gradient(135deg, #fffdf6 0%, #efe3c9 100%); }
+        
+        .product-item h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+
+        .price-tag { 
+            font-size: 2.2rem; 
+            font-weight: 700;
+            margin: 2rem 0;
+            background: linear-gradient(135deg, var(--oro), var(--oro-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-container { 
+            display: flex; 
+            gap: 1.5rem; 
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold { 
+            background: linear-gradient(135deg, var(--oro) 0%, var(--oro-dark) 100%);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(201, 165, 99, 0.25);
+        }
+
+        .btn-outline { 
+            border: 2px solid var(--oro);
+            color: var(--oro);
+            background: transparent;
+        }
+
+        .btn:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(201, 165, 99, 0.3);
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--oro-light) 0%, var(--oro) 100%);
+        }
+
+        .btn-outline:hover {
+            background: rgba(201, 165, 99, 0.08);
+            border-color: var(--oro-dark);
+        }
+
+        .abbinamento-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            margin-top: 2rem;
+        }
+
+        .abbinamento-card,
+        .abbinamento-result {
+            background: var(--bianco);
+            border: 1px solid var(--accent-light);
+            border-radius: 18px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .abbinamento-card h3,
+        .abbinamento-result h3 {
+            color: var(--oro);
+            margin-bottom: 1rem;
+        }
+
+        .abbinamento-card p,
+        .abbinamento-result p {
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .abbinamento-card textarea {
+            width: 100%;
+            border: 1px solid var(--accent-light);
+            background: var(--bg-main);
+            color: var(--text-dark);
+            border-radius: 12px;
+            padding: 1rem;
+            resize: vertical;
+            min-height: 140px;
+            margin-bottom: 1.5rem;
+            outline: none;
+        }
+
+        .abbinamento-card textarea:focus {
+            border-color: var(--oro);
+            background: #fff;
+        }
+
+        .match-title {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .match-badge {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            background: rgba(201, 165, 99, 0.15);
+            color: var(--oro);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Visite e Contatti */
+        .visite-wrapper { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 3rem;
+            background: linear-gradient(135deg, var(--bianco) 0%, var(--bg-secondary) 100%);
+            padding: 4rem;
+            border-radius: 12px;
+            border: 1px solid var(--accent-light);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-details { 
+            border-left: 3px solid var(--oro);
+            padding-left: 2.5rem;
+        }
+
+        .contact-details h3,
+        .visite-wrapper > div:first-child h3 {
+            color: var(--oro);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details p,
+        .visite-wrapper > div:first-child p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 4rem;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Media Queries per Tablet */
+        @media (max-width: 1024px) {
+            section {
+                padding: 5rem 8%;
+            }
+
+            .content-box,
+            .product-item,
+            .product-item.reverse {
+                gap: 3rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.7rem;
+            }
+
+            .visite-wrapper {
+                grid-template-columns: 1fr;
+                padding: 3rem;
+            }
+
+            .contact-details {
+                border-left: 3px solid var(--oro);
+                padding-left: 2rem;
+            }
+        }
+
+        /* Media Queries per Mobile */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 4%;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(250, 248, 245, 0.98);
+                border-bottom: 1px solid var(--border-color);
+                padding: 1.5rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 1rem;
+                text-align: left;
+                border-bottom: 1px solid var(--border-color);
+                color: var(--text-dark);
+            }
+
+            .hero {
+                margin-top: 60px;
+                min-height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 6vw, 3.5rem);
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .content-box,
+            .product-item,
+            .product-item.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-item.reverse .product-img {
+                order: auto;
+            }
+
+            .product-item.reverse .text-content {
+                order: auto;
+            }
+
+            .product-img img {
+                max-height: 400px;
+            }
+
+            .filosofia-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .abbinamento-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .visite-wrapper {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+
+            .contact-details {
+                border-left: none;
+                border-top: 2px solid var(--oro);
+                padding-left: 0;
+                padding-top: 2rem;
+            }
+
+            footer {
+                padding: 2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 5vw, 2.8rem);
+                letter-spacing: 3px;
+            }
+
+            section {
+                padding: 3rem 4%;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            h2, h3 {
+                font-size: 1.3rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .visite-wrapper {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#home" class="logo">SAXUM</a>
+        <nav id="nav-menu">
+            <a href="#home">Home</a>
+            <a href="#chi-siamo">La Storia</a>
+            <a href="#territorio">Territorio</a>
+            <a href="#prodotti">Collezioni</a>
+            <a href="#abbinamenti">Abbinamenti</a>
+            <a href="#visite">Esperienze</a>
+            <a href="carrello.html">Carrello</a>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>SAXUM</h1>
+            <p>TRENTO DOC DI MONTAGNA</p>
+            <p style="font-size: 1.05rem; font-weight: 300; letter-spacing: 2px;">Dove la pietra raconta storie millenarie</p>
+            <div style="margin-top: 3rem;">
+                <a href="#prodotti" class="cta-button">Scopri l'Eccellenza</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="chi-siamo">
+        <h2 class="section-title">Chi Siamo</h2>
+        <div class="content-box">
+            <div class="text-content">
+                <h3>Una Storia di Radici</h3>
+                <p>La nostra è una famiglia di agricoltori da generazioni. Prima ancora che nascesse la cantina, esisteva il legame con la terra: un legame fatto di stagioni, attese, sacrificio e rispetto.</p>
+                <p>Nel 1990 abbiamo deciso di dare forma a ciò che da sempre custodivamo nel cuore: fondare una cantina a conduzione familiare che potesse trasformare l'esperienza agricola in un progetto identitario. Tra i muretti a secco e i terrazzamenti eroici della Val di Cembra, abbiamo iniziato con piccoli numeri, grandi sogni e mani segnate dal lavoro.</p>
+                <p>Ogni vendemmia per noi è un rito collettivo, ogni bottiglia un frammento della nostra storia.</p>
+            </div>
+            <img src="https://i.imgur.com/cMDTrv6.jpeg" alt="Il lavoro dell'uomo" loading="lazy">
+        </div>
+
+        <div class="filosofia-grid">
+            <div class="card">
+                <h4><i class="fas fa-leaf"></i> Filosofia Aziendale</h4>
+                <p>Crediamo in una viticoltura rispettosa, sostenibile e consapevole. Ogni scelta è guidata dall'equilibrio tra uomo e natura. Produciamo quantità limitate per garantire qualità assoluta.</p>
+            </div>
+            <div class="card">
+                <h4><i class="fas fa-vial"></i> Il Metodo in Vigna</h4>
+                <p>Seguiamo un approccio integrato basato sul rispetto dell'equilibrio naturale. Utilizziamo il sovescio e riduciamo gli interventi meccanici per preservare l'integrità del suolo.</p>
+            </div>
+            <div class="card">
+                <h4><i class="fas fa-mountain"></i> La Passione Alpina</h4>
+                <p>Il nostro territorio ci insegna ogni anno. Le Dolomiti, le escursioni termiche, il vento di montagna: tutto confluisce in un risultato di straordinaria complessità e freschezza.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="territorio" style="background: linear-gradient(180deg, var(--bg-secondary) 0%, transparent 100%);">
+        <h2 class="section-title">Il Territorio</h2>
+        <div class="content-box">
+            <img src="https://i.imgur.com/w385nki.jpeg" alt="Vigneti Terrazzati" loading="lazy" style="order: 2;">
+            <div class="text-content" style="order: 1;">
+                <h3>Viticoltura Eroica</h3>
+                <p>La Val di Cembra è un anfiteatro naturale di rara bellezza dove la viticoltura è definita "eroica". Pendii ripidi, altitudini importanti e forti escursioni termiche regalano alle uve freschezza e una marcata impronta minerale.</p>
+                <p>Il nome <strong>Saxum</strong>, dal latino "pietra", è un omaggio ai chilometri di muretti a secco che sostengono i vigneti e custodiscono la memoria agricola della valle.</p>
+                <p>Il vento che scende dalle cime, la luce intensa e i terreni porfirici contribuiscono a creare vini di grande precisione e longevità. Qui, il terroir non è una parola vuota: è una realtà tangibile.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="prodotti">
+        <h2 class="section-title">Le Nostre Etichette</h2>
+        
+        <div class="product-list">
+            
+            <div class="product-item">
+                    <div class="product-img alt-bg">
+                        <img src="assets/images/altera.jpg" alt="Altera Trento DOC" loading="lazy">
+                    </div>
+                <div class="text-content">
+                    <h2>ALTÈRA</h2>
+                    <p><strong>Brut | 100% Chardonnay | 36 Mesi sui Lieviti</strong></p>
+                    <p>Eleganza e purezza in ogni sorso. Al naso emergono note di mela verde, agrumi e delicati sentori di crosta di pane. In bocca è fresco, verticale, con una chiusura sapida che richiama la roccia da cui nasce.</p>
+                    <p><em>Perfetto con crudo di gambero rosso, tartare di ricciola o risotto agli agrumi.</em></p>
+                    <div class="price-tag">€ 28.00</div>
+                    <div class="btn-container">
+                        <a href="scheda_altera.html" class="btn btn-outline">Scheda Tecnica</a>
+                        <button class="btn btn-gold" onclick="aggiungiAlCarrello('ALTÈRA', 28.00)">Aggiungi al Carrello</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-item reverse">
+                <div class="text-content">
+                    <h2>VERTIS</h2>
+                    <p><strong>Blanc de Noir | 100% Pinot Nero | 48 Mesi sui Lieviti</strong></p>
+                    <p>Ottenuto da uve a bacca nera vinificate in bianco, esprime struttura e complessità. Profumi di piccoli frutti rossi, melograno e mineralità vibrante.</p>
+                    <p><em>Ideale per carpaccio di manzo, trota alpina affumicata o tagliolini al tartufo bianco.</em></p>
+                    <div class="price-tag">€ 35.00</div>
+                    <div class="btn-container">
+                        <a href="scheda_vertis.html" class="btn btn-outline">Scheda Tecnica</a>
+                        <button class="btn btn-gold" onclick="aggiungiAlCarrello('VERTIS', 35.00)">Aggiungi al Carrello</button>
+                    </div>
+                </div>
+                <div class="product-img vertis-bg">
+                    <img src="assets/images/vertis.jpg" alt="Vertis Blanc de Noir" loading="lazy">
+                </div>
+            </div>
+
+            <div class="product-item">
+                <div class="product-img rocca-bg">
+                    <img src="assets/images/rocca_alta.jpg" alt="Rocca Alta Riserva" loading="lazy">
+                </div>
+                <div class="text-content">
+                    <h2>ROCCA ALTA</h2>
+                    <p><strong>Riserva | 80% Chardonnay, 20% Pinot Nero | Lungo Affinamento</strong></p>
+                    <p>La Riserva rappresenta la massima espressione della nostra filosofia. Straordinaria complessità aromatica con note di frutta secca, miele d'acacia e pietra focaia.</p>
+                    <p><em>Lo spumante da meditazione, perfetto con astice, branzino in crosta o formaggi stagionati.</em></p>
+                    <div class="price-tag">€ 52.00</div>
+                    <div class="btn-container">
+                        <a href="scheda_rocca.html" class="btn btn-outline">Scheda Tecnica</a>
+                        <button class="btn btn-gold" onclick="aggiungiAlCarrello('ROCCA ALTA', 52.00)">Aggiungi al Carrello</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="abbinamenti">
+        <h2 class="section-title">Abbinamento Vino e Cibo</h2>
+        <div class="abbinamento-wrapper">
+            <div class="abbinamento-card">
+                <h3>Raccontaci la tua situazione</h3>
+                <p>Inserisci l'occasione o il piatto che vuoi coprire con il vino. Ti suggeriremo il miglior abbinamento usando la nostra selezione di etichette.</p>
+                <textarea id="situazione-input" placeholder="Es: cena romantica, pesce al forno, aperitivo con amici, formaggi stagionati..." rows="4"></textarea>
+                <button class="btn btn-gold" onclick="suggerisciAbbinamento()">Suggerisci abbinamento</button>
+            </div>
+            <div class="abbinamento-result" id="abbinamento-result">
+                <h3>Consiglio Rapido</h3>
+                <p>Scrivi una situazione e vedrai il vino consigliato con l'abbinamento ideale.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="visite" style="background: linear-gradient(180deg, var(--bg-secondary) 0%, transparent 100%);">
+        <h2 class="section-title">Esperienze in Cantina</h2>
+        <div class="visite-wrapper">
+            <div>
+                <h3>Il Gusto della Scoperta</h3>
+                <p>Accogliamo gli ospiti su prenotazione per visite guidate e degustazioni, per scoprire il metodo di produzione del Trento DOC e vivere un'esperienza autentica nel cuore della Val di Cembra.</p>
+                <div style="margin-top: 2rem;">
+                    <p><strong>Degustazione Classica</strong></p>
+                    <p>Visita vigneti e cantina + 3 spumanti (1.30h)</p>
+                    <p class="oro-text" style="color: var(--oro); font-size: 1.3rem; margin-top: 0.5rem;">€ 25 / persona</p>
+                    
+                    <p style="margin-top: 2rem;"><strong>Degustazione Premium</strong></p>
+                    <p>Visita + degustazione in vigneto con prodotti tipici (2h)</p>
+                    <p class="oro-text" style="color: var(--oro); font-size: 1.3rem; margin-top: 0.5rem;">€ 33 / persona</p>
+                </div>
+            </div>
+            <div class="contact-details">
+                <h3>Contatti e Prenotazioni</h3>
+                <p>
+                    <i class="fas fa-phone" style="color: var(--oro); margin-right: 0.8rem;"></i>
+                    <strong>Telefono</strong><br>
+                    <span style="margin-left: 2rem;">+39 463 474 8385</span>
+                </p>
+                <p style="margin-top: 1.5rem;">
+                    <i class="fas fa-envelope" style="color: var(--oro); margin-right: 0.8rem;"></i>
+                    <strong>Email</strong><br>
+                    <span style="margin-left: 2rem;">info@saxumtrentodoc.it</span>
+                </p>
+                <p style="margin-top: 1.5rem;">
+                    <i class="fas fa-map-marker-alt" style="color: var(--oro); margin-right: 0.8rem;"></i>
+                    <strong>Indirizzo</strong><br>
+                    <span style="margin-left: 2rem;">Val di Cembra, Trentino, Italia</span>
+                </p>
+                <p style="margin-top: 2rem; font-size: 0.9rem; font-style: italic; color: #888;">
+                    ✓ Accoglienza su prenotazione
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SAXUM | Trento DOC di Montagna &mdash; Val di Cembra, Trentino</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-light);">Viticoltura eroica | Metodo classico | Qualità senza compromessi</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Add animation to elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-box, .product-item, .card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Cart functionality
+        function aggiungiAlCarrello(nome, prezzo) {
+            let carrello = JSON.parse(localStorage.getItem('carrello')) || [];
+            let esistente = carrello.find(item => item.nome === nome);
+            if (esistente) {
+                esistente.quantita += 1;
+            } else {
+                carrello.push({ nome: nome, prezzo: prezzo, quantita: 1 });
+            }
+            localStorage.setItem('carrello', JSON.stringify(carrello));
+            
+            // Visual feedback
+            event.target.textContent = '✓ Aggiunto!';
+            event.target.style.background = 'linear-gradient(135deg, #2ecc71 0%, #27ae60 100%)';
+            setTimeout(() => {
+                event.target.textContent = 'Aggiungi al Carrello';
+                event.target.style.background = '';
+            }, 2000);
+        }
+
+        const abbinamentiData = [
+            {
+                wine: 'ALTÈRA',
+                pair: 'ALTÈRA con crostacei, tartare di pesce, risotto agli agrumi o carpaccio di tonno.',
+                keywords: ['pesce', 'crostacei', 'risotto', 'agrumi', 'aperitivo', 'antipasti', 'crudo', 'tonno', 'gambero', 'brunch']
+            },
+            {
+                wine: 'VERTIS',
+                pair: 'VERTIS con carpaccio di manzo, trota affumicata, tagliolini al tartufo bianco o formaggi a pasta molle.',
+                keywords: ['carne', 'manzo', 'tartufo', 'trota', 'formaggi', 'aperitivo', 'rosso', 'stagionati', 'piccante', 'mediterraneo']
+            },
+            {
+                wine: 'ROCCA ALTA',
+                pair: 'ROCCA ALTA con astice, brasato, branzino in crosta, selvaggina o formaggi stagionati.',
+                keywords: ['astice', 'brasato', 'formaggi', 'stagionati', 'selvaggina', 'cena', 'inverno', 'ricco', 'meditazione', 'tartufo']
+            }
+        ];
+
+        function suggerisciAbbinamento() {
+            const input = document.getElementById('situazione-input');
+            const result = document.getElementById('abbinamento-result');
+            const text = (input.value || '').trim().toLowerCase();
+
+            if (!text) {
+                result.innerHTML = `
+                    <h3>Consiglio Rapido</h3>
+                    <p>Inserisci una situazione o il piatto che vuoi coprire con il vino.</p>
+                `;
+                return;
+            }
+
+            const match = abbinamentiData
+                .map(item => ({
+                    item,
+                    score: item.keywords.reduce((acc, keyword) => acc + (text.includes(keyword) ? 1 : 0), 0)
+                }))
+                .sort((a, b) => b.score - a.score)[0];
+
+            const best = match && match.score > 0 ? match.item : abbinamentiData[0];
+            const explanation = match && match.score > 0
+                ? `Abbiamo trovato un abbinamento ideale per la tua situazione: <strong>${best.wine}</strong>.`
+                : `Non abbiamo trovato una corrispondenza precisa, ma <strong>${best.wine}</strong> è un ottimo vino versatile per molte occasioni.`;
+
+            result.innerHTML = `
+                <h3>Consiglio Rapido</h3>
+                <p class="match-title">${explanation}</p>
+                <p><strong>Vino consigliato:</strong> ${best.wine}</p>
+                <p><strong>Abbinamento ideale:</strong> ${best.pair}</p>
+                <p class="match-badge">Situazione: ${text}</p>
+            `;
+        }
+
+        // Smooth scroll behavior for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+

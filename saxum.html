@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAXUM | Trento DOC di Montagna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c5a059;
+            --bg-dark: #121212;
+            --text-light: #f4f4f4;
+            --surface: #1e1e1e;
+            --surface-alt: #262626;
+            --border: rgba(197, 160, 89, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header {
+            position: fixed;
+            inset: 0 0 auto auto;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 18, 18, 0.92);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            transition: color 0.25s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?q=80&w=2000') center/cover fixed;
+        }
+
+        .hero-title {
+            max-width: 900px;
+        }
+
+        .hero-title h1 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .hero-subtitle,
+        .hero-text {
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            margin-top: 25px;
+            font-style: italic;
+            color: #e0d6b4;
+        }
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-img {
+            width: 100%;
+            border-radius: 8px;
+            filter: grayscale(20%);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 30px;
+            border-left: 3px solid var(--primary);
+            border-radius: 8px;
+        }
+
+        .feature-card h4 {
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 15px 0;
+            font-weight: 700;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: #111;
+            font-weight: 700;
+            border-radius: 40px;
+            transition: opacity 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .visit-box {
+            background: var(--surface);
+            padding: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: #d3c89a;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            header { padding: 18px 30px; }
+            section { padding: 80px 7%; }
+            .story-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; gap: 20px; padding: 18px 20px; }
+            nav { gap: 18px; justify-content: center; }
+            .hero { min-height: 80vh; }
+            .product-card img { height: 240px; }
+            section { padding: 70px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">SAXUM</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#chi-siamo">Chi Siamo</a>
+            <a href="#prodotti">Prodotti</a>
+            <a href="#visite">Visite</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-title">
+            <h1>Saxum</h1>
+            <p class="hero-subtitle">Trento DOC di montagna in Val di Cembra</p>
+            <p class="hero-text">Nasce dalla pietra. Dal silenzio antico delle montagne trentine.</p>
+        </div>
+    </section>
+
+    <section id="chi-siamo">
+        <h2 class="section-title">La Nostra Essenza</h2>
+        <div class="story-grid">
+            <div>
+                <h3>La Storia</h3>
+                <p>Nel 1990 abbiamo deciso di dare forma a ciò che da sempre custodivamo nel cuore: fondare una cantina a conduzione familiare. Tra i muretti a secco e i terrazzamenti eroici della Val di Cembra, abbiamo iniziato con piccoli numeri e grandi sogni.</p>
+                <h3 style="margin-top: 40px;">Il Territorio</h3>
+                <p>La Val di Cembra è un anfiteatro naturale di rara bellezza. Qui la viticoltura è definita "eroica": pendii ripidi e forti escursioni termiche che regalano freschezza e una marcata impronta minerale alle uve.</p>
+            </div>
+            <img src="https://via.placeholder.com/700x500?text=Vigneti+Val+di+Cembra" class="story-img" alt="Vigneti Terrazzati in Val di Cembra">
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <h4>Filosofia</h4>
+                <p>Crediamo in una viticoltura rispettosa, sostenibile e consapevole. Produciamo quantità limitate per garantire qualità assoluta.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Viticoltura</h4>
+                <p>Le nostre vigne crescono tra i muretti e i terrazzamenti. Il lavoro manuale e la cura dei dettagli valorizzano l'identità del territorio.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Metodo</h4>
+                <p>Seguiamo il metodo classico con affinamenti lenti. Il risultato sono spumanti eleganti, vibranti e profondi.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="prodotti" style="background: #0f0f0f;">
+        <h2 class="section-title">I Nostri Spumanti</h2>
+        <div class="product-container">
+            <article class="product-card">
+                <img src="https://via.placeholder.com/600x400?text=Alt%C3%A8ra+Chardonnay" alt="Bottiglia Altèra Chardonnay">
+                <h3>Altèra</h3>
+                <p class="price">€29,00</p>
+                <p>100% Chardonnay. Eleganza minerale con note di mela verde e crosta di pane.</p>
+                <a class="btn" href="#visite">Prenota Degustazione</a>
+            </article>
+            <article class="product-card">
+                <img src="https://via.placeholder.com/600x400?text=Vertis+Pinot+Nero" alt="Bottiglia Vertis Pinot Nero">
+                <h3>Vertis</h3>
+                <p class="price">€34,00</p>
+                <p>100% Pinot Nero. Strutturato e raffinato, con un profilo fruttato e speziato.</p>
+                <a class="btn" href="#visite">Scopri di più</a>
+            </article>
+            <article class="product-card">
+                <img src="https://via.placeholder.com/600x400?text=Rocca+Alta+Riserva" alt="Bottiglia Rocca Alta Riserva">
+                <h3>Rocca Alta</h3>
+                <p class="price">€42,00</p>
+                <p>Blend di Chardonnay e Pinot Nero. Note di agrumi maturi, nocciola e un elegante finale tostato.</p>
+                <a class="btn btn-outline" href="#visite">Visita la Cantina</a>
+            </article>
+        </div>
+    </section>
+
+    <section id="visite">
+        <h2 class="section-title">Visite in Cantina</h2>
+        <div class="visit-box">
+            <h3 style="margin-bottom: 20px;">Vivi un'esperienza autentica</h3>
+            <p>Seguici tra i filari e scopri la nostra lavorazione in cantina. Degustazione e racconti del territorio per un'esperienza unica.</p>
+            <div class="contact-info">
+                <p><strong>Degustazione Classica (1h 30m):</strong> €25/persona</p>
+                <p><strong>Degustazione Premium:</strong> €33/persona</p>
+                <p style="margin-top: 20px;"><strong>Prenotazioni:</strong> +39 463 474 8385</p>
+                <p><strong>Email:</strong> info@saxumvino.it</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>SAXUM - Val di Cembra, Trentino | Trento DOC Metodo Classico</p>
+    </footer>
+
+</body>
+</html>
