@@ -1040,23 +1040,22 @@
             }, 2000);
         }
 
-        const abbinamentiData = [
-            {
-                wine: 'ALTÈRA',
-                pair: 'ALTÈRA con crostacei, tartare di pesce, risotto agli agrumi o carpaccio di tonno.',
-                keywords: ['pesce', 'crostacei', 'risotto', 'agrumi', 'aperitivo', 'antipasti', 'crudo', 'tonno', 'gambero', 'brunch']
-            },
-            {
-                wine: 'VERTIS',
-                pair: 'VERTIS con carpaccio di manzo, trota affumicata, tagliolini al tartufo bianco o formaggi a pasta molle.',
-                keywords: ['carne', 'manzo', 'tartufo', 'trota', 'formaggi', 'aperitivo', 'rosso', 'stagionati', 'piccante', 'mediterraneo']
-            },
-            {
-                wine: 'ROCCA ALTA',
-                pair: 'ROCCA ALTA con astice, brasato, branzino in crosta, selvaggina o formaggi stagionati.',
-                keywords: ['astice', 'brasato', 'formaggi', 'stagionati', 'selvaggina', 'cena', 'inverno', 'ricco', 'meditazione', 'tartufo']
+        let abbinamentiData = [];
+
+        loadAbbinamentiData();
+
+        async function loadAbbinamentiData() {
+            try {
+                const response = await fetch('abbinamenti.json', { cache: 'no-cache' });
+                if (!response.ok) {
+                    throw new Error(`Impossibile caricare abbinamenti.json (${response.status})`);
+                }
+                abbinamentiData = await response.json();
+            } catch (error) {
+                console.error('Errore caricamento database abbinamenti:', error);
+                abbinamentiData = [];
             }
-        ];
+        }
 
         function suggerisciAbbinamento() {
             const input = document.getElementById('situazione-input');
@@ -1071,10 +1070,21 @@
                 return;
             }
 
+            if (abbinamentiData.length === 0) {
+                result.innerHTML = `
+                    <h3>Consiglio Rapido</h3>
+                    <p>Il database degli abbinamenti non è ancora disponibile. Riprova tra qualche istante.</p>
+                `;
+                return;
+            }
+
             const match = abbinamentiData
                 .map(item => ({
                     item,
-                    score: item.keywords.reduce((acc, keyword) => acc + (text.includes(keyword) ? 1 : 0), 0)
+                    score: item.keywords.reduce(
+                        (acc, keyword) => acc + (text.includes(keyword.toLowerCase()) ? 1 : 0),
+                        0
+                    )
                 }))
                 .sort((a, b) => b.score - a.score)[0];
 

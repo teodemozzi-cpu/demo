@@ -1,0 +1,26 @@
+[
+  {
+    "wine": "ALTÈRA",
+    "pair": "ALTÈRA con crostacei, tartare di pesce, risotto agli agrumi o carpaccio di tonno.",
+    "keywords": ["pesce", "crostacei", "risotto", "agrumi", "aperitivo", "antipasti", "crudo", "tonno", "gambero", "brunch"],
+    "blend": "100% Chardonnay",
+    "aging": "36 Mesi sui Lieviti",
+    "style": "Brut"
+  },
+  {
+    "wine": "VERTIS",
+    "pair": "VERTIS con carpaccio di manzo, trota affumicata, tagliolini al tartufo bianco o formaggi a pasta molle.",
+    "keywords": ["carne", "manzo", "tartufo", "trota", "formaggi", "aperitivo", "rosso", "stagionati", "piccante", "mediterraneo"],
+    "blend": "100% Pinot Nero",
+    "aging": "48 Mesi sui Lieviti",
+    "style": "Blanc de Noir"
+  },
+  {
+    "wine": "ROCCA ALTA",
+    "pair": "ROCCA ALTA con astice, brasato, branzino in crosta, selvaggina o formaggi stagionati.",
+    "keywords": ["astice", "brasato", "formaggi", "stagionati", "selvaggina", "cena", "inverno", "ricco", "meditazione", "tartufo"],
+    "blend": "100% Chardonnay",
+    "aging": "60 Mesi sui Lieviti",
+    "style": "Riserva"
+  }
+]
