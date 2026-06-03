@@ -144,7 +144,7 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background-color: var(--bg-main);
+            background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%), url('./assets/images/valle-cembra.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -160,7 +160,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at center, transparent 0%, rgba(250,248,245,0.25) 100%);
+            background: radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.2) 100%);
             pointer-events: none;
         }
 
@@ -174,7 +174,7 @@
             font-size: clamp(3.5rem, 8vw, 7rem);
             color: var(--oro);
             margin-bottom: 1.5rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             letter-spacing: 6px;
         }
 
@@ -183,7 +183,9 @@
             letter-spacing: 3px;
             font-weight: 300;
             margin-bottom: 3rem;
-            opacity: 0.9;
+            opacity: 1;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
 
         .cta-button {
@@ -914,7 +916,7 @@
         </div>
     </section>
 
-    <section id="abbinamenti">
+    <section id="abbinamenti" style="background: linear-gradient(135deg, rgba(243, 237, 229, 0.95) 0%, rgba(250, 248, 245, 0.95) 100%), url('./assets/images/evento-maggio.jpg') right/30% no-repeat; background-attachment: fixed;">
         <h2 class="section-title">Abbinamento Vino e Cibo</h2>
         <div class="abbinamento-wrapper">
             <div class="abbinamento-card">
