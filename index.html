@@ -146,11 +146,6 @@
         .hero {
             min-height: 100vh;
             background-color: var(--bg-main);
-            background-image: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%), url('./assets/images/valle-cembra.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -166,13 +161,24 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.2) 100%);
+            background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%);
             pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 3;
             animation: fadeInUp 1s ease-out;
         }
 
@@ -812,6 +818,7 @@
     </header>
 
     <section id="home" class="hero">
+        <img class="hero-bg-image" src="./assets/images/valle-cembra.jpg" alt="Valle di Cembra" loading="eager">
         <div class="hero-content">
             <h1>SAXUM</h1>
             <p>TRENTO DOC DI MONTAGNA</p>
@@ -922,7 +929,9 @@
         </div>
     </section>
 
-    <section id="abbinamenti" style="background-color: rgba(243, 237, 229, 0.95); background-image: linear-gradient(135deg, rgba(243, 237, 229, 0.95) 0%, rgba(250, 248, 245, 0.95) 100%), url('./assets/images/evento-maggio.jpg'); background-position: right center; background-size: 30% auto; background-repeat: no-repeat; background-attachment: fixed;">
+    <section id="abbinamenti" style="background: linear-gradient(135deg, rgba(243, 237, 229, 0.95) 0%, rgba(250, 248, 245, 0.95) 100%); position: relative; overflow: hidden;">
+        <img src="./assets/images/evento-maggio.jpg" alt="Evento maggio" style="position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 40%; height: 120%; object-fit: cover; opacity: 0.9; z-index: 1;" loading="lazy">
+        <div style="position: relative; z-index: 2;">
         <h2 class="section-title">Abbinamento Vino e Cibo</h2>
         <div class="abbinamento-wrapper">
             <div class="abbinamento-card">
@@ -935,6 +944,7 @@
                 <h3>Consiglio Rapido</h3>
                 <p>Scrivi una situazione e vedrai il vino consigliato con l'abbinamento ideale.</p>
             </div>
+        </div>
         </div>
     </section>
 
